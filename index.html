@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>日历</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+<div class="main">
+    <!--<div class="help"></div>-->
+    <div class="sel-box">
+        <span class="btn btn-pre">&lt;</span>
+        <span id="cur-month">2018年7月</span>
+        <span class="btn btn-next">&gt;</span>
+    </div>
+    <div class="table thead">
+        <div>日</div><div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div>
+    </div>
+    <div id="tb-list"></div>
+    <div class="foot" id="cur-info"></div>
+</div>
+
+<script type="text/javascript" src="./js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="./js/LunarCalendar.js"></script>
+<script type="text/javascript" src="./js/index.js"></script>
+</body>
+</html>

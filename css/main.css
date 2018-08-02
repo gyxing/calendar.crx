@@ -1,0 +1,120 @@
+body {
+    font: 12px/1.5 "Microsoft YaHei", "Helvetica Neue", Helvetica, STHeiTi, SimHei, Arial, sans-serif;
+    color: #000;
+}
+* {
+    outline: none;
+    user-select: none;
+}
+.main {
+    width: 325px;
+    padding: 5px 10px 10px 10px;
+    position: relative;
+}
+.main .help {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    background: url(../images/help.png) center / contain no-repeat;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+.main .help:hover {
+    opacity: 0.8;
+}
+.sel-box {
+    text-align: center;
+    margin: 10px 0 20px;
+    font-weight: 600;
+    position: relative;
+    font-size: 14px;
+}
+.sel-box .btn {
+    position: absolute;
+    top: 0;
+    width: 22px;
+    height: 22px;
+    line-height: 20px;
+    border-radius: 50%;
+    border: solid 1px #ddd;
+    text-align: center;
+    cursor: pointer;
+}
+.sel-box .btn.btn-pre {
+    left: 10px;
+}
+.sel-box .btn.btn-next {
+    right: 10px;
+}
+.sel-box .btn:hover {
+    color: #07f;
+    border-color: #07f;
+}
+.table {
+    display: table;
+    width: 100%;
+    margin: 4px 0;
+}
+.table > div {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    width: 14%;
+    height: 25px;
+    padding: 3px 0;
+}
+.thead > div {
+    font-weight: 600;
+}
+.table > div.cur {
+    border: solid 1px #07f;
+    border-radius: 3px;
+}
+.table > div p {
+    margin: 0;
+    padding: 0;
+}
+.table p:first-child {
+    font-size: 14px;
+}
+.table p:last-child {
+    color: #bbb;
+}
+
+.table > div.big {
+    background-color: #ff4f4f;
+    color: #fff!important;
+    border-radius: 3px;
+}
+.table > div.big p {
+    color: #fff!important;
+}
+.table:not(.thead) > div:first-child,
+.table:not(.thead) > div:last-child {
+    color: #f00;
+}
+
+.table:not(.thead) > div:first-child p:last-child,
+.table:not(.thead) > div:last-child p:last-child {
+    color: #ffa7a7;
+}
+.table > div .red {
+    color: #f00!important;
+}
+
+.foot {
+    padding: 8px 0 4px 0;
+    margin-top: 8px;
+    border-top: solid 1px #e6e6e6;
+    font-size: 14px;
+    line-height: 30px;
+}
+.foot i {
+    font-style: normal;
+    margin: 0 10px;
+    font-weight: 600;
+}
+.foot span {
+    white-space: nowrap;
+}
