@@ -7,9 +7,11 @@ body {
     user-select: none;
 }
 .main {
-    width: 325px;
+    width: 345px;
     padding: 5px 10px 10px 10px;
     position: relative;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 .main .help {
     position: absolute;
