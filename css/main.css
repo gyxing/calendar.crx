@@ -65,6 +65,8 @@ body {
     width: 14%;
     height: 25px;
     padding: 3px 0;
+    border-radius: 3px;
+    border-right: solid 1px #fff;
 }
 .thead > div {
     font-weight: 600;
@@ -103,6 +105,33 @@ body {
 }
 .table > div .red {
     color: #f00!important;
+}
+
+.table > div.holiday, .table > div.work {
+    position: relative;
+}
+.table > div.holiday:before, .table > div.work:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 10px;
+    color: #fff;
+    padding: 0 2px;
+    border-radius: 50%;
+}
+.table > div.holiday {
+    background-color: #fff0f0;
+}
+.table > div.work {
+    background-color: #f2f2f2;
+}
+.table > div.holiday:before {
+    content: '休';
+    background-color: #ff4f4f;
+}
+.table > div.work:before {
+    content: '班';
+    background-color: #888;
 }
 
 .foot {

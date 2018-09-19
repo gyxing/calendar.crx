@@ -59,6 +59,7 @@ $(function () {
     }
 
     function setList(weeks) {
+        console.log('==============');
         $list.empty();
         for (var i = 0; i < weeks.length; i++) {
             var week = weeks[i];
@@ -82,9 +83,17 @@ $(function () {
                     }
                 }
                 var spans = '<p>' + d.getDate() + '</p>';
+                // 农历信息
                 var nongLi = window.LunarCalendar.solarToLunar(d.getFullYear(), d.getMonth() + 1, d.getDate());
+                if(nongLi.worktime == 1) {
+                    // 补班
+                    cls.push('work');
+                } else if (nongLi.worktime == 2) {
+                    // 放假
+                    cls.push('holiday');
+                }
                 var cls2 = nongLi.term || nongLi.lunarFestival || nongLi.solarFestival ? 'red' : '';
-			spans += '<p class="' + cls2 + '">' + (nongLi.lunarFestival || nongLi.solarFestival || nongLi.term || (nongLi.lunarDayName == '初一' ? nongLi.lunarMonthName : nongLi.lunarDayName)) + '</p>'
+			    spans += '<p class="' + cls2 + '">' + (nongLi.lunarFestival || nongLi.solarFestival || nongLi.term || (nongLi.lunarDayName == '初一' ? nongLi.lunarMonthName : nongLi.lunarDayName)) + '</p>'
                 tds.push('<div class="' + cls.join(' ') + '">' + spans + '</div>');
             }
             if (tds.length < 7) {
