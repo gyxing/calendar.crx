@@ -17,7 +17,8 @@ $(function () {
     if(navigator.onLine) {
         // 更新大小周数据
         $.getJSON('https://gyxing.github.io/otherpage/static/weeks.json', function(ret) {
-            bigWeeks = ret;
+            bigWeeks = ret.bigweeks;
+            window.LunarCalendar.setWorktime(ret.worktime);
             setMonth(curDate);
         });
     }
