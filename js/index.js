@@ -33,7 +33,7 @@ $(function () {
     cur_info.solarFestival && jieri.push(cur_info.solarFestival);
     cur_info.lunarFestival && jieri.push(cur_info.lunarFestival);
     // 拼装数据
-    var cur_html = '【' + cur_info.zodiac + '年】 ' +
+    var cur_html = '今天:【' + cur_info.zodiac + '年】 ' +
         cur_info.GanZhiYear + '年/' + cur_info.GanZhiMonth + '月/' + cur_info.GanZhiDay + '日' +
         '<i>' + cur_info.lunarMonthName + cur_info.lunarDayName + '</i>' +
         '<span>' + jieri.join('/') + '</span>';
