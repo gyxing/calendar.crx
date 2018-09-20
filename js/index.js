@@ -19,10 +19,17 @@ $(function () {
         $.getJSON('https://gyxing.github.io/otherpage/static/weeks.json', function(ret) {
             bigWeeks = ret.bigweeks;
             window.LunarCalendar.setWorktime(ret.worktime);
+            localStorage.setItem('_ret_data', JSON.stringify(ret));
             setMonth(curDate);
         });
     }
 
+    // 从缓存获取数据
+    var cacheData = JSON.parse(localStorage.getItem('_ret_data'));
+    if(cacheData) {
+        bigWeeks = cacheData.bigweeks;
+        window.LunarCalendar.setWorktime(cacheData.worktime);
+    }
     setMonth(curDate);
     $list.fadeIn();
 
@@ -60,7 +67,6 @@ $(function () {
     }
 
     function setList(weeks) {
-        console.log('==============');
         $list.empty();
         for (var i = 0; i < weeks.length; i++) {
             var week = weeks[i];
