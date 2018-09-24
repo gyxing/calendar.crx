@@ -138,8 +138,9 @@ body {
     padding: 8px 0 4px 0;
     margin-top: 8px;
     border-top: solid 1px #e6e6e6;
-    font-size: 14px;
+    font-size: 13px;
     line-height: 30px;
+    text-align: center;
 }
 .foot i {
     font-style: normal;
