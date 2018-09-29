@@ -106,7 +106,7 @@ $(function () {
         if (d.getFullYear() == now.getFullYear() && d.getMonth() == now.getMonth() && d.getDate() == now.getDate()) {
             cls.push('cur');
         }
-        if (d.getDay() == 6) {
+        if (d.getDay() == 6 || d.getDay() == 0) {
             // 判断是否是大周
             if (bigWeeks[d.getFullYear()] && bigWeeks[d.getFullYear()][d.getMonth() + 1]) {
                 bigWeeks[d.getFullYear()][d.getMonth() + 1].indexOf(d.getDate()) != -1 && cls.push('big')
