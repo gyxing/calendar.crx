@@ -59,6 +59,11 @@ $(function () {
         setMonth(curDate)
     });
 
+    $('#cur-info').on('click', function() {
+        curDate = now;
+        setMonth(now);
+    });
+
     function setMonth(time) {
         $curMonth.text(time.getFullYear() + '年' + (time.getMonth() + 1) + '月');
 
@@ -74,43 +79,53 @@ $(function () {
             for (var k = 0; k < week.length; k++) {
                 var d = new Date(week[k]);
                 if (k == 0 && d.getDay() > 0) {
-                    for (var m = 0; m < d.getDay(); m++) {
-                        tds.push('<div>&nbsp;</div>')
+                    // 补位
+                    var firstDay = d.getDay();  // 第一天
+                    for (var m = 0; m < firstDay; m++) {
+                        var pcd = new Date(d.getFullYear(), d.getMonth(), d.getDate() - firstDay + m);
+                        _setDayInfo(tds, pcd, 'disabled');
                     }
                 }
-                var cls = [];
-                // 当前日期
-                if (d.getFullYear() == now.getFullYear() && d.getMonth() == now.getMonth() && d.getDate() == now.getDate()) {
-                    cls.push('cur');
-                }
-                if (d.getDay() == 6) {
-                    // 判断是否是大周
-                    if (bigWeeks[d.getFullYear()] && bigWeeks[d.getFullYear()][d.getMonth() + 1]) {
-                        bigWeeks[d.getFullYear()][d.getMonth() + 1].indexOf(d.getDate()) != -1 && cls.push('big')
-                    }
-                }
-                var spans = '<p>' + d.getDate() + '</p>';
-                // 农历信息
-                var nongLi = window.LunarCalendar.solarToLunar(d.getFullYear(), d.getMonth() + 1, d.getDate());
-                if(nongLi.worktime == 1) {
-                    // 补班
-                    cls.push('work');
-                } else if (nongLi.worktime == 2) {
-                    // 放假
-                    cls.push('holiday');
-                }
-                var cls2 = nongLi.term || nongLi.lunarFestival || nongLi.solarFestival ? 'red' : '';
-			    spans += '<p class="' + cls2 + '">' + (nongLi.lunarFestival || nongLi.solarFestival || nongLi.term || (nongLi.lunarDayName == '初一' ? nongLi.lunarMonthName : nongLi.lunarDayName)) + '</p>'
-                tds.push('<div class="' + cls.join(' ') + '">' + spans + '</div>');
+                _setDayInfo(tds, d);
             }
             if (tds.length < 7) {
-                let len = 7 - tds.length;
+                var dd = new Date(week[week.length - 1]);   // 最后一天
+                var len = 7 - tds.length;
                 for (var k = 0; k < len; k++) {
-                    tds.push('<div>&nbsp;</div>')
+                    var lcd = new Date(dd.getFullYear(), dd.getMonth(), dd.getDate() + k + 1);
+                    _setDayInfo(tds, lcd, 'disabled')
                 }
             }
             $list.append('<div class="table">' + tds.join('') + '</div>');
         }
+    }
+
+    function _setDayInfo(tds, d, extraCss) {
+        var cls = [];
+        // 当前日期
+        if (d.getFullYear() == now.getFullYear() && d.getMonth() == now.getMonth() && d.getDate() == now.getDate()) {
+            cls.push('cur');
+        }
+        if (d.getDay() == 6) {
+            // 判断是否是大周
+            if (bigWeeks[d.getFullYear()] && bigWeeks[d.getFullYear()][d.getMonth() + 1]) {
+                bigWeeks[d.getFullYear()][d.getMonth() + 1].indexOf(d.getDate()) != -1 && cls.push('big')
+            }
+        }
+        var spans = '<p>' + d.getDate() + '</p>';
+        // 农历信息
+        var nongLi = window.LunarCalendar.solarToLunar(d.getFullYear(), d.getMonth() + 1, d.getDate());
+        if(nongLi.worktime == 1) {
+            // 补班
+            cls.push('work');
+        } else if (nongLi.worktime == 2) {
+            // 放假
+            cls.push('holiday');
+        }
+        if(extraCss) { cls.push(extraCss) }
+        var cls2 = nongLi.term || nongLi.lunarFestival || nongLi.solarFestival ? 'red' : '';
+        spans += '<p class="' + cls2 + '">' + (nongLi.lunarFestival || nongLi.solarFestival || nongLi.term || (nongLi.lunarDayName == '初一' ? nongLi.lunarMonthName : nongLi.lunarDayName)) + '</p>'
+        tds.push('<div class="' + cls.join(' ') + '">' + spans + '</div>');
     }
 
     // 划分一个月中的周期

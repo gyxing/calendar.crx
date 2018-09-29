@@ -12,6 +12,7 @@ body {
     position: relative;
     max-width: 100%;
     box-sizing: border-box;
+    margin: auto;
 }
 .main .help {
     position: absolute;
@@ -86,24 +87,23 @@ body {
     color: #bbb;
 }
 
-.table > div.big {
+.table > div.big:not(.disabled) {
     background-color: #ff4f4f;
     color: #fff!important;
     border-radius: 3px;
 }
-.table > div.big p {
+.table > div.big:not(.disabled) p {
     color: #fff!important;
 }
-.table:not(.thead) > div:first-child,
-.table:not(.thead) > div:last-child {
+.table:not(.thead) > div:not(.disabled):first-child,
+.table:not(.thead) > div:not(.disabled):last-child {
     color: #f00;
 }
-
-.table:not(.thead) > div:first-child p:last-child,
-.table:not(.thead) > div:last-child p:last-child {
+.table:not(.thead) > div:not(.disabled):first-child p:last-child,
+.table:not(.thead) > div:not(.disabled):last-child p:last-child {
     color: #ffa7a7;
 }
-.table > div .red {
+.table > div:not(.disabled) .red {
     color: #f00!important;
 }
 
@@ -119,10 +119,10 @@ body {
     padding: 0 2px;
     border-radius: 50%;
 }
-.table > div.holiday {
+.table > div.holiday:not(.disabled) {
     background-color: #fff0f0;
 }
-.table > div.work {
+.table > div.work:not(.disabled) {
     background-color: #f2f2f2;
 }
 .table > div.holiday:before {
@@ -133,6 +133,14 @@ body {
     content: '班';
     background-color: #888;
 }
+.table > div.holiday.disabled:before,
+.table > div.work.disabled:before {
+    background-color: #ddd;
+}
+.table > div.disabled,
+.table > div.disabled p:last-child {
+    color: #ddd;
+}
 
 .foot {
     padding: 8px 0 4px 0;
@@ -141,6 +149,7 @@ body {
     font-size: 13px;
     line-height: 30px;
     text-align: center;
+    cursor: pointer;
 }
 .foot i {
     font-style: normal;
