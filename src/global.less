@@ -1,0 +1,172 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font:
+    14px/1.4 'Microsoft YaHei',
+    'Helvetica Neue',
+    Helvetica,
+    STHeiTi,
+    SimHei,
+    Arial,
+    sans-serif;
+  color: #000;
+  min-width: 345px;
+  min-height: 300px;
+}
+
+* {
+  box-sizing: border-box;
+  outline: none;
+  user-select: none;
+}
+
+.calendar-page {
+  width: 345px;
+  margin: auto;
+  padding: 5px 10px 10px 10px;
+  position: relative;
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 15px;
+  margin: 10px 0 20px;
+
+  .title {
+    font-weight: bold;
+  }
+
+  .action {
+    width: 22px;
+    height: 22px;
+    line-height: 20px;
+    border-radius: 50%;
+    border: solid 1px #ddd;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+      border-color: #bcdefb;
+      background-color: #f3faff;
+    }
+  }
+}
+
+.calendar-footer {
+  padding: 8px 0 4px 0;
+  margin-top: 12px;
+  border-top: solid 1px #e6e6e6;
+  font-size: 13px;
+  line-height: 30px;
+  text-align: center;
+  cursor: pointer;
+
+  span {
+    margin-inline: 4px;
+  }
+}
+
+.calendar-table {
+  width: 100%;
+  margin-bottom: 5px;
+
+  thead th {
+    padding-bottom: 8px;
+  }
+
+  td {
+    position: relative;
+    width: 47px;
+    text-align: center;
+    border-radius: 3px;
+    padding-block: 3px;
+    line-height: 1.5;
+    font-size: 12px;
+    border: solid 1px transparent;
+
+    &.weekend {
+      color: #f00;
+
+      .label {
+        color: #ffa7a7;
+      }
+    }
+
+    &.today {
+      border: solid 1px #07f;
+      background-color: #fafdff;
+    }
+
+    &.selected {
+      border: dashed 1px #479af8;
+    }
+
+    &.holiday:before,
+    &.workday:before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: #fff;
+      border-radius: 50%;
+      width: 15px;
+      height: 15px;
+      text-align: center;
+      line-height: 14px;
+      padding: 1px;
+    }
+
+    &.holiday {
+      background-color: #fff0f0;
+
+      &:before {
+        content: '休';
+        background-color: #ff4f4f;
+      }
+    }
+
+    &.workday {
+      background-color: #f2f2f2;
+
+      &:before {
+        content: '班';
+        background-color: #888;
+      }
+    }
+
+    &.disabled {
+      color: #ddd;
+
+      .label,
+      .festival {
+        color: #ddd;
+      }
+
+      &.holiday,
+      &.workday {
+        background-color: transparent;
+
+        &:before {
+          background-color: #ddd;
+        }
+      }
+    }
+  }
+
+  .value {
+    font-size: 15px;
+  }
+
+  .label {
+    color: #bbb;
+  }
+
+  .festival {
+    color: #f00;
+  }
+}

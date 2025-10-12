@@ -1,0 +1,27 @@
+{
+  "private": true,
+  "author": "gyxing <172176234@qq.com>",
+  "scripts": {
+    "analyze": "cross-env ANALYZE=1 umi build",
+    "build": "umi build",
+    "postbuild": "node ./post-build.js",
+    "postinstall": "umi setup",
+    "setup": "umi setup",
+    "start": "umi dev"
+  },
+  "dependencies": {
+    "solarlunar-es": "^1.0.9",
+    "umi": "4.3.20"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.33",
+    "@types/react-dom": "^18.0.11",
+    "archiver": "^7.0.1",
+    "babel-plugin-dynamic-import-node": "^2.3.3",
+    "cross-env": "^10.1.0",
+    "prettier": "^3.2.5",
+    "prettier-plugin-organize-imports": "^3.2.4",
+    "prettier-plugin-packagejson": "^2.5.0",
+    "typescript": "^5.0.3"
+  }
+}
