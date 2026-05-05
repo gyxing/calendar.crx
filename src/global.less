@@ -1,3 +1,14 @@
+:root {
+  --calendar-width: 345px;
+  --calendar-min-width: 345px;
+  --calendar-min-height: 300px;
+  --calendar-cell-width: 47px;
+  --calendar-action-size: 22px;
+  --calendar-action-line-height: 20px;
+  --calendar-badge-size: 15px;
+  --calendar-badge-line-height: 14px;
+}
+
 html,
 body {
   padding: 0;
@@ -14,8 +25,8 @@ body {
     Arial,
     sans-serif;
   color: #000;
-  min-width: 345px;
-  min-height: 300px;
+  min-width: var(--calendar-min-width);
+  min-height: var(--calendar-min-height);
 }
 
 * {
@@ -25,7 +36,7 @@ body {
 }
 
 .calendar-page {
-  width: 345px;
+  width: var(--calendar-width);
   margin: auto;
   padding: 5px 10px 10px 10px;
   position: relative;
@@ -43,9 +54,9 @@ body {
   }
 
   .action {
-    width: 22px;
-    height: 22px;
-    line-height: 20px;
+    width: var(--calendar-action-size);
+    height: var(--calendar-action-size);
+    line-height: var(--calendar-action-line-height);
     border-radius: 50%;
     border: solid 1px #ddd;
     text-align: center;
@@ -82,7 +93,7 @@ body {
 
   td {
     position: relative;
-    width: 47px;
+    width: var(--calendar-cell-width);
     text-align: center;
     border-radius: 3px;
     padding-block: 3px;
@@ -114,10 +125,10 @@ body {
       left: 0;
       color: #fff;
       border-radius: 50%;
-      width: 15px;
-      height: 15px;
+      width: var(--calendar-badge-size);
+      height: var(--calendar-badge-size);
       text-align: center;
-      line-height: 14px;
+      line-height: var(--calendar-badge-line-height);
       padding: 1px;
     }
 

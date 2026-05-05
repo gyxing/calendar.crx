@@ -1,5 +1,5 @@
 import { FC, memo, useMemo } from 'react';
-import solarLunar from 'solarlunar-es';
+import { getLunarInfo } from '@/utils';
 
 interface Props {
   // 当前日期
@@ -12,11 +12,7 @@ const Index: FC<Props> = ({ current, setCurrent }) => {
     if (!current) {
       return undefined;
     }
-    return solarLunar.solar2lunar(
-      current.getFullYear(),
-      current.getMonth() + 1,
-      current.getDate(),
-    );
+    return getLunarInfo(current);
   }, [current]);
 
   return (
@@ -28,7 +24,7 @@ const Index: FC<Props> = ({ current, setCurrent }) => {
           {info.isToday && <span>今天:</span>}
           <span>【{info.animal}】</span>
           <span>
-            {(info as any).yearCn} {info.monthCn}
+            {info.yearCn} {info.monthCn}
             {info.dayCn}
           </span>
           <span>{info.ncWeek}</span>

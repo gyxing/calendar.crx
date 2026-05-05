@@ -14,9 +14,17 @@ export default () => {
   }, [current]);
 
   useEffect(() => {
+    let isMounted = true;
+
     getHolidays().then((res) => {
-      setFestivals(res);
+      if (isMounted) {
+        setFestivals(res);
+      }
     });
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const onToMonth = useCallback((value: number) => {

@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "solarlunar-es": "^1.0.9",
-    "umi": "4.3.20"
+    "umi": "^4.3.20"
   },
   "devDependencies": {
     "@types/react": "^18.0.33",

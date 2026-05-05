@@ -1,6 +1,5 @@
-import { Festival, formatDate } from '@/utils';
+import { Festival, formatDate, getLunarInfo, createDate } from '@/utils';
 import { FC, memo, useMemo } from 'react';
-import solarLunar from 'solarlunar-es';
 
 const weekLabels = ['日', '一', '二', '三', '四', '五', '六'];
 
@@ -29,11 +28,7 @@ interface Props {
 
 function getItemValue(sDate: Date, disabled?: boolean) {
   const date = new Date(sDate);
-  const info = solarLunar.solar2lunar(
-    date.getFullYear(),
-    date.getMonth() + 1,
-    date.getDate(),
-  );
+  const info = getLunarInfo(date);
   if (typeof info === 'number' || !info) {
     return {
       date: date,
@@ -64,8 +59,8 @@ function getItemValue(sDate: Date, disabled?: boolean) {
 
 // 划分一个月中的周期
 function getWeeks(year: number, month: number) {
-  const startDate = new Date(year, month, 1);
-  const endDate = new Date(year, month + 1, 0);
+  const startDate = createDate(year, month, 1);
+  const endDate = createDate(year, month + 1, 0);
   const res: ItemValue[][] = [];
   let week: ItemValue[] = [];
   for (let i = startDate.getDate(); i <= endDate.getDate(); i++) {
@@ -89,7 +84,7 @@ function getWeeks(year: number, month: number) {
     const firstDay = firstWeek[0];
     const count = 7 - firstWeek.length;
     for (let i = 0; i < count; i++) {
-      const value = new Date(
+      const value = createDate(
         firstDay.date.getFullYear(),
         firstDay.date.getMonth(),
         -i,
@@ -103,7 +98,7 @@ function getWeeks(year: number, month: number) {
     const lastDay = lastWeek[lastWeek.length - 1];
     const count = 7 - lastWeek.length;
     for (let i = 0; i < count; i++) {
-      const value = new Date(
+      const value = createDate(
         lastDay.date.getFullYear(),
         lastDay.date.getMonth(),
         lastDay.date.getDate() + i + 1,
